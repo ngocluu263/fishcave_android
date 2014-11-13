@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.qualixium.fishcave.Assets;
 import static com.qualixium.fishcave.actors.ObstaclesActor.Rock;
 import com.qualixium.fishcave.FishcaveGame;
 import com.qualixium.fishcave.GameState;
@@ -34,7 +35,7 @@ public class GameScreen extends Screens {
         super(game);
         stage = new Stage(new FitViewport(480, 640));
         Gdx.input.setInputProcessor(stage);
-        
+
         background = new BackgroundActor();
         background.setSize(stage.getWidth(), stage.getHeight());
         stage.addActor(background);
@@ -47,7 +48,10 @@ public class GameScreen extends Screens {
 
         sign = new SignActor();
         stage.addActor(sign);
-        
+
+        Assets.music.setLooping(true);
+        Assets.music.play();
+
         resetWorld();
 
     }
@@ -111,6 +115,7 @@ public class GameScreen extends Screens {
                     r.position.y, 20, r.image.getRegionHeight() - 10);
             if (fishRect.overlaps(rockRect)) {
                 if (GameState.state != GameState.State.GameOver) {
+                    Assets.explode.play();
                 }
                 GameState.state = GameState.State.GameOver;
                 FishActor.velocity.x = 0;
@@ -121,10 +126,10 @@ public class GameScreen extends Screens {
             }
         }
 
-        if (fish.getY() < ObstaclesActor.ground.getRegionHeight() - 20 || 
-                fish.getY() + fish.getHeight() > 640 - ObstaclesActor.ground.getRegionHeight() + 20) {
+        if (fish.getY() < ObstaclesActor.ground.getRegionHeight() - 20
+                || fish.getY() + fish.getHeight() > 640 - ObstaclesActor.ground.getRegionHeight() + 20) {
             if (GameState.state != GameState.State.GameOver) {
-                // explode.play();
+                Assets.explode.play();
             }
             GameState.state = GameState.State.GameOver;
             FishActor.velocity.x = 0;
