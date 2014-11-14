@@ -7,6 +7,7 @@ package com.qualixium.fishcave.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -18,46 +19,62 @@ import com.qualixium.fishcave.Assets;
  * @author homepro
  */
 public class FishActor extends Actor {
-    
+
     private final TextureRegion fish;
+    private final Animation fishAnimation;
+    private final TextureRegion[] fishFrames;
+    private float duration;
+
     private final int WIDTH, HEIGHT;
-    public static final float START_Y = 240,
+    public static final float START_Y = 400,
             START_X = 50,
             SPEED = 200,
-            JUMP_IMPULSE = 400,
+            JUMP_IMPULSE = 350,
             GRAVITY = -20;
     public static Vector2 velocity = new Vector2();
     public static Vector2 gravity = new Vector2();
 
     public FishActor() {
-        WIDTH = 57;
+        WIDTH = 128;
         HEIGHT = 44;
+
         fish = new TextureRegion(Assets.fish, WIDTH, HEIGHT);
-        setSize(WIDTH, HEIGHT);
+        TextureRegion[][] animation = fish.split(WIDTH / 2, HEIGHT);
+        fishFrames = new TextureRegion[animation.length * animation[0].length];
+        int index = 0;
+        for (int i = 0; i < animation.length; i++) {
+            for (int j = 0; j < animation[i].length; j++) {
+                fishFrames[index++] = animation[i][j];
+
+            }
+        }
+        fishAnimation = new Animation(0.2f, fishFrames);
+
+        setSize(WIDTH / 2 , HEIGHT);
         setPosition(START_X, START_Y);
     }
-    
-    
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         Color col = getColor();//needed for color changing
         batch.setColor(col.r, col.g, col.b, col.a * parentAlpha);
-        batch.draw(fish, getX(), getY(), getOriginX(), getOriginY(),
+
+        duration += Gdx.graphics.getDeltaTime();
+        TextureRegion fishFrame = fishAnimation.getKeyFrame(duration, true);
+        batch.draw(fishFrame, getX(), getY(), getOriginX(), getOriginY(),
                 getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        
+
     }
 
     @Override
     public void moveBy(float x, float y) {
         float delta = Gdx.graphics.getDeltaTime();
-        super.moveBy(x * delta, y * delta); 
+        super.moveBy(x * delta, y * delta);
     }
-    
-    
 
 }
