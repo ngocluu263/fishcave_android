@@ -21,6 +21,7 @@ import com.qualixium.fishcave.GameState;
  */
 public class SignActor extends Actor {
 
+    TextureRegion sample;
     TextureRegion ready;
     TextureRegion gameOver;
     public static int score = 0;
@@ -29,9 +30,11 @@ public class SignActor extends Actor {
     public SignActor() {
 
         ready = new TextureRegion(Assets.gameReady);
+        sample = new TextureRegion(Assets.sample);
         gameOver = new TextureRegion(Assets.gameOver);
         
         font = new BitmapFont(Gdx.files.internal("arial.fnt"));
+        
     }
 
     @Override
@@ -41,7 +44,9 @@ public class SignActor extends Actor {
 
          if (GameState.state == GameState.State.Start) {
             batch.draw(ready, GameScreen.stage.getCamera().position.x  - 
-                    ready.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y - ready.getRegionHeight() / 2);
+                    ready.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y + ready.getRegionHeight());
+            batch.draw(sample, GameScreen.stage.getCamera().position.x  - 
+                    sample.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y - sample.getRegionHeight() + 20);
         }
         if (GameState.state == GameState.State.GameOver) {
             batch.draw(gameOver, GameScreen.stage.getCamera().position.x  - 

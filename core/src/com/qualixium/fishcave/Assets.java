@@ -20,8 +20,11 @@ public class Assets {
     public static Texture fish;
     public static Texture background;
     public static Texture rock;
+    
+    public static Texture sample;
     public static Texture gameReady;
     public static Texture gameOver;
+    
     public static Texture splash;
     public static Music music;
     public static Sound explode;
@@ -31,9 +34,12 @@ public class Assets {
         fish = new Texture("images/fish.png");
         background = new Texture("images/background.png");
         rock = new Texture("images/rock.png");
+        
+        sample = new Texture("images/sample.png");
         gameReady = new Texture("images/ready.png");
         gameOver = new Texture("images/gameover.png");
-        splash = new Texture("images/classic_splash.jpg");
+        
+        splash = new Texture("images/splash.jpg");
 
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
         explode = Gdx.audio.newSound(Gdx.files.internal("sounds/explode.wav"));
@@ -44,8 +50,11 @@ public class Assets {
         fish.dispose();
         background.dispose();
         rock.dispose();
+        
+        sample.dispose();
         gameReady.dispose();
         gameOver.dispose();
+        
         splash.dispose();
         music.dispose();
         explode.dispose();

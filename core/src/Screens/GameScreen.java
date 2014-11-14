@@ -18,6 +18,7 @@ import com.qualixium.fishcave.GameState;
 import com.qualixium.fishcave.actors.BackgroundActor;
 import com.qualixium.fishcave.actors.ObstaclesActor;
 import com.qualixium.fishcave.actors.FishActor;
+import static com.qualixium.fishcave.actors.FishActor.rotation;
 import com.qualixium.fishcave.actors.SignActor;
 
 /**
@@ -62,6 +63,8 @@ public class GameScreen extends Screens {
         fish.setPosition(FishActor.START_X, FishActor.START_Y);
 
         FishActor.velocity.set(0, 0);
+        fish.setRotation(0);
+        FishActor.rotation.y = 0;
         stage.getCamera().position.x = 400;
 
         ObstaclesActor.rocks.clear();
@@ -83,23 +86,31 @@ public class GameScreen extends Screens {
             }
             if (GameState.state == GameState.State.Running) {
                 FishActor.velocity.set(FishActor.SPEED, FishActor.JUMP_IMPULSE);
+                FishActor.rotation.y = 30;
             }
             if (GameState.state == GameState.State.GameOver) {
                 GameState.state = GameState.State.Start;
                 resetWorld();
             }
         }
+
         if (GameState.state != GameState.State.Start) {
             FishActor.velocity.y += FishActor.GRAVITY;
+            if (FishActor.velocity.y < 0) {
+                FishActor.rotation.y -= 60 * deltaTime;
+                if (FishActor.rotation.y < -91) {
+                    FishActor.rotation.y = -90;
+                }
+            }
         }
 
-        fish.moveBy(FishActor.velocity.x, FishActor.velocity.y);
         stage.getCamera().position.x = fish.getX() + 200;
 
         if (stage.getCamera().position.x - ObstaclesActor.groundOffsetX
                 > ObstaclesActor.ground.getRegionWidth() + 400) {
             ObstaclesActor.groundOffsetX += ObstaclesActor.ground.getRegionWidth();
         }
+
         fishRect.set(fish.getX(), fish.getY(), fish.getWidth(), fish.getHeight());
 
         for (Rock r : ObstaclesActor.rocks) {
