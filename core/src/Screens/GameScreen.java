@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.qualixium.fishcave.Assets;
 import static com.qualixium.fishcave.actors.ObstaclesActor.Rock;
@@ -34,7 +35,7 @@ public class GameScreen extends Screens {
 
     public GameScreen(FishcaveGame game) {
         super(game);
-        stage = new Stage(new FitViewport(480, 640));
+        stage = new Stage(new ExtendViewport(480, 720));
         Gdx.input.setInputProcessor(stage);
 
         background = new BackgroundActor();
@@ -70,7 +71,7 @@ public class GameScreen extends Screens {
         ObstaclesActor.rocks.clear();
         for (int i = 0; i < 5; i++) {
             boolean isDown = MathUtils.randomBoolean();
-            ObstaclesActor.rocks.add(new Rock(700 + i * 200, isDown ? 640
+            ObstaclesActor.rocks.add(new Rock(700 + i * 200, isDown ? stage.getHeight()
                     - ObstaclesActor.rock.getRegionHeight() : 0, isDown
                             ? ObstaclesActor.rockDown : ObstaclesActor.rock));
         }
@@ -117,7 +118,7 @@ public class GameScreen extends Screens {
             if (stage.getCamera().position.x - r.position.x > 400 + r.image.getRegionWidth()) {
                 boolean isDown = MathUtils.randomBoolean();
                 r.position.x += 5 * 200;
-                r.position.y = isDown ? 640 - ObstaclesActor.rock.getRegionHeight() : 0;
+                r.position.y = isDown ? stage.getHeight() - ObstaclesActor.rock.getRegionHeight() : 0;
                 r.image = isDown ? ObstaclesActor.rockDown : ObstaclesActor.rock;
                 r.counted = false;
             }
@@ -138,7 +139,7 @@ public class GameScreen extends Screens {
         }
 
         if (fish.getY() < ObstaclesActor.ground.getRegionHeight() - 20
-                || fish.getY() + fish.getHeight() > 640 - ObstaclesActor.ground.getRegionHeight() + 20) {
+                || fish.getY() + fish.getHeight() > stage.getHeight() - ObstaclesActor.ground.getRegionHeight() + 20) {
             if (GameState.state != GameState.State.GameOver) {
                 Assets.explode.play();
             }

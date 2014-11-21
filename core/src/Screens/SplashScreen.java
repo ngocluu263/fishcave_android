@@ -8,7 +8,7 @@ package Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.qualixium.fishcave.FishcaveGame;
 import com.qualixium.fishcave.actors.SplashActor;
 
@@ -19,16 +19,16 @@ import com.qualixium.fishcave.actors.SplashActor;
 public class SplashScreen extends Screens {
 
     public static Stage stage;
-    private FishcaveGame game;
-    private long startTime;
-    private SplashActor splash;
+    private final FishcaveGame gameCore;
+    private final long startTime;
+    private final SplashActor splash;
 
     public SplashScreen(FishcaveGame g) {
         super(g);
-        stage = new Stage(new FitViewport(480, 640));
+        stage = new Stage(new ExtendViewport(480, 640));
         Gdx.input.setInputProcessor(stage);
 
-        game = g;
+        gameCore = g;
 
         splash = new SplashActor();
         stage.addActor(splash);
@@ -38,7 +38,7 @@ public class SplashScreen extends Screens {
 
     public void showGame() {
         if (TimeUtils.millis() > (startTime + 5000)) {
-            game.setScreen(new GameScreen(game));
+            gameCore.setScreen(new GameScreen(gameCore));
         }
     }
 

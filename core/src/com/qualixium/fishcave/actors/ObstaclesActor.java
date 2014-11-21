@@ -5,6 +5,7 @@
  */
 package com.qualixium.fishcave.actors;
 
+import Screens.GameScreen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -27,7 +28,7 @@ public class ObstaclesActor extends Actor {
 
     public ObstaclesActor() {
 
-        rock = new TextureRegion(Assets.rock);
+        rock = new TextureRegion(Assets.rock, Assets.rock.getWidth(), Math.round(GameScreen.stage.getHeight() / 2));
         rockDown = new TextureRegion(rock);
         rockDown.flip(false, true);
 
@@ -49,8 +50,8 @@ public class ObstaclesActor extends Actor {
         batch.draw(ground, groundOffsetX, 0);
         batch.draw(ground, groundOffsetX + ground.getRegionWidth(), 0);
         
-        batch.draw(ceiling, groundOffsetX, 640 - ceiling.getRegionHeight());
-        batch.draw(ceiling, groundOffsetX + ceiling.getRegionWidth(), 640 - ceiling.getRegionHeight());
+        batch.draw(ceiling, groundOffsetX, GameScreen.stage.getHeight() - ceiling.getRegionHeight());
+        batch.draw(ceiling, groundOffsetX + ceiling.getRegionWidth(), GameScreen.stage.getHeight() - ceiling.getRegionHeight());
 
 
     }
