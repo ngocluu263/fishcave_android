@@ -18,7 +18,7 @@ import com.qualixium.fishcave.Assets;
  */
 public class BackgroundActor extends Actor {
 
-    private TextureRegion background;
+    private final TextureRegion background;
 
     public BackgroundActor() {
         background = new TextureRegion(Assets.background);

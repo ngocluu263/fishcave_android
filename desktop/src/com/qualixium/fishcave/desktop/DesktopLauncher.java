@@ -9,6 +9,6 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
                 config.width = 480;
 		config.height = 720;
-		new LwjglApplication(new FishcaveGame(), config);
+            LwjglApplication lwjglApplication = new LwjglApplication(new FishcaveGame(), config);
 	}
 }

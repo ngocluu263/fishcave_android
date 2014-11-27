@@ -23,7 +23,7 @@ import com.qualixium.fishcave.FishcaveGame;
 
 public class AndroidLauncher extends AndroidApplication {
 
-    private static final String AD_UNIT_ID = "ca-app-pub-2387744774358260/2669605430";
+    private static final String AD_UNIT_ID = "ca-app-pub-2387744774358260/3722251431";
     private static final String GOOGLE_PLAY_URL = "https://play.google.com/store/apps/developer?id=Qualixium";
     protected AdView adView;
     protected View gameView;

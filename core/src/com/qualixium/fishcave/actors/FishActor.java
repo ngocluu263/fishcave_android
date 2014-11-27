@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.qualixium.fishcave.Assets;
-import com.qualixium.fishcave.GameState;
 
 /**
  *
@@ -26,7 +25,6 @@ public class FishActor extends Actor {
     private final TextureRegion[] fishFrames;
     private float duration;
 
-    private float deltaTime;
 
     private final int WIDTH, HEIGHT;
     public static final float START_Y = 260,
@@ -40,7 +38,7 @@ public class FishActor extends Actor {
     public static Vector2 gravity = new Vector2();
 
     public FishActor() {
-        deltaTime = Gdx.graphics.getDeltaTime();
+        
 
         WIDTH = 128;
         HEIGHT = 44;
@@ -65,7 +63,7 @@ public class FishActor extends Actor {
         Color col = getColor();//needed for color changing
         batch.setColor(col.r, col.g, col.b, col.a * parentAlpha);
 
-        duration += deltaTime;
+        duration += Gdx.graphics.getDeltaTime();;
         TextureRegion fishFrame = fishAnimation.getKeyFrame(duration, true);
         batch.draw(fishFrame, getX(), getY(), getOriginX(), getOriginY(),
                 getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
@@ -83,12 +81,12 @@ public class FishActor extends Actor {
 
     @Override
     public void moveBy(float x, float y) {
-        super.moveBy(x * deltaTime, y * deltaTime);
+        super.moveBy(x * Gdx.graphics.getDeltaTime() , y * Gdx.graphics.getDeltaTime());
     }
 
     @Override
     public void rotateBy(float amountInDegrees) {
-        super.rotateBy(amountInDegrees * deltaTime);
+        super.rotateBy(amountInDegrees * Gdx.graphics.getDeltaTime());
     }
 
 }

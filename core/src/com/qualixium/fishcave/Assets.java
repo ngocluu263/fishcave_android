@@ -28,6 +28,7 @@ public class Assets {
     public static Texture splash;
     public static Music music;
     public static Sound explode;
+    
 
     public static void load() {
         ground = new Texture("images/ground.png");
@@ -43,6 +44,8 @@ public class Assets {
 
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
         explode = Gdx.audio.newSound(Gdx.files.internal("sounds/explode.wav"));
+        
+       
     }
 
     public static void dispose() {

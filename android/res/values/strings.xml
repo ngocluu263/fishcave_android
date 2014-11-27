@@ -2,5 +2,7 @@
 <resources>
 
     <string name="app_name">FishCave</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

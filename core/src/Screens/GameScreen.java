@@ -11,7 +11,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.qualixium.fishcave.Assets;
 import static com.qualixium.fishcave.actors.ObstaclesActor.Rock;
 import com.qualixium.fishcave.FishcaveGame;
@@ -19,7 +18,6 @@ import com.qualixium.fishcave.GameState;
 import com.qualixium.fishcave.actors.BackgroundActor;
 import com.qualixium.fishcave.actors.ObstaclesActor;
 import com.qualixium.fishcave.actors.FishActor;
-import static com.qualixium.fishcave.actors.FishActor.rotation;
 import com.qualixium.fishcave.actors.SignActor;
 
 /**
@@ -51,8 +49,8 @@ public class GameScreen extends Screens {
         sign = new SignActor();
         stage.addActor(sign);
 
-        Assets.music.setLooping(true);
-        Assets.music.play();
+        //Assets.music.setLooping(true);
+        //Assets.music.play();
 
         resetWorld();
 
