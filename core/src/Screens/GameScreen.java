@@ -52,8 +52,8 @@ public class GameScreen extends Screens {
         sign = new SignActor();
         stage.addActor(sign);
 
-        //Assets.music.setLooping(true);
-        //Assets.music.play();
+        Assets.music.setLooping(true);
+        Assets.music.play();
         resetWorld();
 
     }
