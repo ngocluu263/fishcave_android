@@ -32,9 +32,10 @@ public class SignActor extends Actor {
         ready = new TextureRegion(Assets.gameReady);
         sample = new TextureRegion(Assets.sample);
         gameOver = new TextureRegion(Assets.gameOver);
-        
+
         font = new BitmapFont(Gdx.files.internal("arial.fnt"));
-        
+        font.scale(0.5f);
+
     }
 
     @Override
@@ -42,18 +43,19 @@ public class SignActor extends Actor {
         Color col = getColor();//needed for color changing
         batch.setColor(col.r, col.g, col.b, col.a * parentAlpha);
 
-         if (GameState.state == GameState.State.Start) {
-            batch.draw(ready, GameScreen.stage.getCamera().position.x  - 
-                    ready.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y + ready.getRegionHeight());
-            batch.draw(sample, GameScreen.stage.getCamera().position.x  - 
-                    sample.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y - sample.getRegionHeight() + 20);
+        if (GameState.state == GameState.State.Start) {
+            batch.draw(ready, GameScreen.stage.getCamera().position.x
+                    - ready.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y + ready.getRegionHeight());
+            batch.draw(sample, GameScreen.stage.getCamera().position.x
+                    - sample.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y - sample.getRegionHeight() + 20);
         }
         if (GameState.state == GameState.State.GameOver) {
-            batch.draw(gameOver, GameScreen.stage.getCamera().position.x  - 
-                    gameOver.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y - gameOver.getRegionHeight() / 2);
+            batch.draw(gameOver, GameScreen.stage.getCamera().position.x
+                    - gameOver.getRegionWidth() / 2, GameScreen.stage.getCamera().position.y - gameOver.getRegionHeight() / 2);
+
         }
         if (GameState.state == GameState.State.GameOver || GameState.state == GameState.State.Running) {
-            
+
             font.draw(batch, "" + score, GameScreen.stage.getCamera().position.x,
                     GameScreen.stage.getCamera().viewportHeight - 60);
         }

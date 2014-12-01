@@ -4,17 +4,68 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context="${relativePackage}.${activityClass}" >
-
-    <Button
-        android:id="@+id/button1"
+    
+    <ImageView
+        android:id="@+id/fish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="122dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/fish" />
+
+    <Button
+        android:id="@+id/btnRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/fish"
+        android:layout_below="@+id/fish"
+        android:layout_marginTop="37dp"
         android:onClick="rateApp"
         android:padding="20dp"
         android:text="Rate"
         android:textSize="20sp" />
+    
+    
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRate"
+        android:layout_marginTop="27dp"
+        android:layout_toLeftOf="@+id/btnRate"
+        android:onClick="playGame"
+        android:padding="20dp"
+        android:text="Play"
+        android:textSize="20sp" />
+    
+
+    <Button
+        android:id="@+id/btnScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRate"
+        android:layout_marginTop="27dp"
+        android:layout_toRightOf="@+id/btnRate"
+        android:onClick="showLeaderboards"
+        android:padding="20dp"
+        android:text="Leaderboards" />
+    
+    
+    <TextView
+        android:id="@+id/copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="(c) QUALIXIUM 2014"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fish"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/title" />
 
 </RelativeLayout>

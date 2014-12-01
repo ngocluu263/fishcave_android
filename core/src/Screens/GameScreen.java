@@ -6,6 +6,7 @@
 package Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -15,6 +16,7 @@ import com.qualixium.fishcave.Assets;
 import static com.qualixium.fishcave.actors.ObstaclesActor.Rock;
 import com.qualixium.fishcave.FishcaveGame;
 import com.qualixium.fishcave.GameState;
+import com.qualixium.fishcave.Settings;
 import com.qualixium.fishcave.actors.BackgroundActor;
 import com.qualixium.fishcave.actors.ObstaclesActor;
 import com.qualixium.fishcave.actors.FishActor;
@@ -27,9 +29,10 @@ import com.qualixium.fishcave.actors.SignActor;
 public class GameScreen extends Screens {
 
     public static Stage stage;
-    private final Actor fish, background, obstacles, sign;
+    private static Actor fish, background, obstacles, sign;
     Rectangle fishRect = new Rectangle();
     Rectangle rockRect = new Rectangle();
+    public static String scroreString;
 
     public GameScreen(FishcaveGame game) {
         super(game);
@@ -51,12 +54,11 @@ public class GameScreen extends Screens {
 
         //Assets.music.setLooping(true);
         //Assets.music.play();
-
         resetWorld();
 
     }
 
-    private void resetWorld() {
+    public static final void resetWorld() {
         SignActor.score = 0;
         ObstaclesActor.groundOffsetX = 0;
         fish.setPosition(FishActor.START_X, FishActor.START_Y);
@@ -126,6 +128,15 @@ public class GameScreen extends Screens {
             if (fishRect.overlaps(rockRect)) {
                 if (GameState.state != GameState.State.GameOver) {
                     Assets.explode.play();
+                    if (SignActor.score >= Settings.highscores[4]) {
+                        scroreString = "NEW HIGHSCORE: ";
+                    } else {
+                        scroreString = "SCORE: ";
+                    }
+                    Settings.addScore(SignActor.score);
+                    Settings.save();
+                    updateArchivements();
+                    game.setScreen(new GameoverScreen(game));
                 }
                 GameState.state = GameState.State.GameOver;
                 FishActor.velocity.x = 0;
@@ -140,6 +151,16 @@ public class GameScreen extends Screens {
                 || fish.getY() + fish.getHeight() > stage.getHeight() - ObstaclesActor.ground.getRegionHeight() + 20) {
             if (GameState.state != GameState.State.GameOver) {
                 Assets.explode.play();
+                if (SignActor.score >= Settings.highscores[4]) {
+                    scroreString = "NEW HIGHSCORE: ";
+                } else {
+                    scroreString = "SCORE: ";
+                }
+                Settings.addScore(SignActor.score);
+                Settings.save();
+                updateArchivements();
+                game.setScreen(new GameoverScreen(game));
+
             }
             GameState.state = GameState.State.GameOver;
             FishActor.velocity.x = 0;
@@ -147,8 +168,31 @@ public class GameScreen extends Screens {
 
     }
 
+    private void updateArchivements() {
+        if (game.actionResolver.getSignedInGPGS()) {
+            game.actionResolver.submitScoreGPGS(SignActor.score);
+            if (SignActor.score >= 10) {
+                game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQAg");
+            }
+            if (SignActor.score >= 20) {
+                game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQAw");
+            }
+            if (SignActor.score >= 30) {
+                game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQBA");
+            }
+            if (SignActor.score >= 40) {
+                game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQBQ");
+            }
+            if (SignActor.score >= 50) {
+                game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQBg");
+            }
+        }
+    }
+
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         createWorld();
         stage.draw();
         stage.act();

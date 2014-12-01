@@ -7,8 +7,10 @@ import com.qualixium.fishcave.FishcaveGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+                config.title = "FishCave";
+		config.useGL30 = false;
                 config.width = 480;
 		config.height = 720;
-            LwjglApplication lwjglApplication = new LwjglApplication(new FishcaveGame(), config);
+          new LwjglApplication(new FishcaveGame(new ActionResolverDesktop()), config);
 	}
 }

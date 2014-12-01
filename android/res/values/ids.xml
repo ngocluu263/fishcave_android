@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_id">904943013828</string>
+
+    <string name="achievement_turtle">CgkIxJ-6lqsaEAIQAg</string>
+    <string name="achievement_squid">CgkIxJ-6lqsaEAIQAw</string>
+    <string name="achievement_dolphin">CgkIxJ-6lqsaEAIQBA</string>
+    <string name="achievement_shark">CgkIxJ-6lqsaEAIQBQ</string>
+    <string name="achievement_tunafish">CgkIxJ-6lqsaEAIQBg</string>
+
+    <string name="fishcave_leaderboard">CgkIxJ-6lqsaEAIQAQ</string>
+</resources>

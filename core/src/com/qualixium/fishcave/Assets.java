@@ -20,6 +20,12 @@ public class Assets {
     public static Texture fish;
     public static Texture background;
     public static Texture rock;
+    public static Texture title;
+    
+    public static Texture rate;
+    public static Texture play;
+    public static Texture archivements;
+    public static Texture leaderboard;
     
     public static Texture sample;
     public static Texture gameReady;
@@ -35,6 +41,12 @@ public class Assets {
         fish = new Texture("images/fish.png");
         background = new Texture("images/background.png");
         rock = new Texture("images/rock.png");
+        title = new Texture("images/title.png");
+        
+        rate = new Texture("images/rate.png");
+        play = new Texture("images/play.png");
+        archivements = new Texture("images/archivements.png");
+        leaderboard = new Texture("images/podium.png");
         
         sample = new Texture("images/sample.png");
         gameReady = new Texture("images/ready.png");
@@ -53,6 +65,12 @@ public class Assets {
         fish.dispose();
         background.dispose();
         rock.dispose();
+        title.dispose();
+        
+        rate.dispose();
+        play.dispose();
+        archivements.dispose();
+        leaderboard.dispose();
         
         sample.dispose();
         gameReady.dispose();
