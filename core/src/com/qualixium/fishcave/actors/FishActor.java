@@ -29,8 +29,8 @@ public class FishActor extends Actor {
     private final int WIDTH, HEIGHT;
     public static final float START_Y = 260,
             START_X = 50,
-            SPEED = 200,
-            JUMP_IMPULSE = 350,
+            SPEED = 250,
+            JUMP_IMPULSE = 400,
             GRAVITY = -20;
 
     public static Vector2 rotation = new Vector2();

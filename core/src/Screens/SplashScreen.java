@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.qualixium.fishcave.Assets;
 import com.qualixium.fishcave.FishcaveGame;
 
@@ -26,18 +26,19 @@ public class SplashScreen extends Screens {
 
     public SplashScreen(FishcaveGame game) {
         super(game);
-        stage = new Stage(new FitViewport(640, 480));
+        stage = new Stage(new ExtendViewport(480, 720));
         stage.addActor(new Image(Assets.splash));
 
         splashImg = new Image(Assets.splash);
         splashImg.setSize(stage.getWidth(), stage.getHeight());
 
         stage.addActor(splashImg);
+        
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClearColor(58/255f, 80/255f, 175/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if (TimeUtils.millis() > (startTime + 5000)) {

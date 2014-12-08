@@ -51,9 +51,7 @@ public class GameScreen extends Screens {
 
         sign = new SignActor();
         stage.addActor(sign);
-
-        Assets.music.setLooping(true);
-        Assets.music.play();
+        
         resetWorld();
 
     }
@@ -171,19 +169,19 @@ public class GameScreen extends Screens {
     private void updateArchivements() {
         if (game.actionResolver.getSignedInGPGS()) {
             game.actionResolver.submitScoreGPGS(SignActor.score);
-            if (SignActor.score >= 10) {
+            if (SignActor.score >= 50) {
                 game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQAg");
             }
-            if (SignActor.score >= 20) {
+            if (SignActor.score >= 100) {
                 game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQAw");
             }
-            if (SignActor.score >= 30) {
+            if (SignActor.score >= 200) {
                 game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQBA");
             }
-            if (SignActor.score >= 40) {
+            if (SignActor.score >= 250) {
                 game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQBQ");
             }
-            if (SignActor.score >= 50) {
+            if (SignActor.score >= 300) {
                 game.actionResolver.unlockAchievementGPGS("CgkIxJ-6lqsaEAIQBg");
             }
         }
@@ -191,7 +189,7 @@ public class GameScreen extends Screens {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClearColor(58/255f, 80/255f, 175/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         createWorld();
         stage.draw();
